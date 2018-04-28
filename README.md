@@ -1,2 +1,4 @@
-# skein
-Prototype of a wiki written in Clojure.
+# Skein
+
+A wiki written in Clojure.
+
