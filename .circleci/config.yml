@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/clojure:lein-2.8.1
+    steps:
+      - checkout
+      - run: lein with-profile testing ancient
+      - run: lein with-profile testing bikeshed
+      - run: lein with-profile testing cljfmt check
+      - run: lein with-profile testing eastwood
+      - run: lein with-profile testing kibit
