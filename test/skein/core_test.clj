@@ -2,6 +2,6 @@
   (:require [clojure.test :refer :all]
             [skein.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest canary-zero
+  (testing "skein core evaluates to true"
+    (is (true? (skein.core/-main)))))

@@ -1,0 +1,12 @@
+codecov:
+  notify:
+    require_ci_to_pass: no
+
+coverage:
+  range: 70...100
+  round: down
+  precision: 0
+  notify:
+    slack:
+      default:
+        url: "secret:LMdNZhR1RYwxNJBClcBX9lw/qxLONwSK2FmOYC1NInjo8HVLINvJUJ+K4Yu8wV5RBIVTH23fPs/gvqFm0qw3E6AU63899h38b6Itn0Z10u50119vRL/zJ8YKw4lk6eV0e07ZkPu6kfRJDS+KxE0X0YD/kjQ8aqHR3XMvKYZrnJM="

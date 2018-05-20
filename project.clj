@@ -6,9 +6,11 @@
   :dependencies [[org.clojure/clojure "1.9.0"]]
   :main ^:skip-aot skein.core
   :target-path "target/%s"
+  :aliases {"unit" ["test"]}
   :profiles {:uberjar {:aot :all}
-             :testing {:plugins [[lein-ancient "0.6.15"]
+             :prebuild {:plugins [[lein-ancient "0.6.15"]
                                  [lein-bikeshed "0.5.1"]
                                  [lein-cljfmt "0.5.7"]
                                  [jonase/eastwood "0.2.5"]
-                                 [lein-kibit "0.1.6"]]}})
+                                 [lein-kibit "0.1.6"]
+                                 [lein-cloverage "1.0.10"]]}})

@@ -5,4 +5,4 @@
 (defn -main
   "iThe main entry point for the Skein application."
   [& args]
-  (println "(Skein Core)"))
+  true)
