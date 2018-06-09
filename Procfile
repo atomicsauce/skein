@@ -1,1 +1,1 @@
-web: java -cp target/uberjar/asc-skein.jar clojure.main -m asc-skein.core
+web: java -cp target/uberjar/skein.jar clojure.main -m skein.core
