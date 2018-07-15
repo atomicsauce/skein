@@ -56,7 +56,8 @@
                                   [lein-kibit "0.1.6"]
                                   [lein-cloverage "1.0.10"]]}
 
-             :development {:dependencies [[expound "0.7.0"]
+             :development {:jvm-opts ["-Dconf=config-development.edn"]
+                           :dependencies [[expound "0.7.0"]
                                           [pjstadig/humane-test-output "0.8.3"]
                                           [prone "1.6.0"]
                                           [ring/ring-devel "1.6.3"]
