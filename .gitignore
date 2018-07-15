@@ -13,3 +13,6 @@ test-config.edn
 pom.xml
 pom.xml.asc
 profiles.clj
+config-development.edn
+local/db
+local/logs
