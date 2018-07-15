@@ -7,10 +7,13 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[clj-time "0.14.4"]
+                 [com.h2database/h2 "1.4.196"]
                  [compojure "1.6.1"]
+                 [conman "0.8.1"]
                  [cprop "0.1.11"]
                  [funcool/struct "1.3.0"]
                  [luminus-immutant "0.2.4"]
+                 [luminus-migrations "0.5.1"]
                  [luminus-nrepl "0.1.4"]
                  [luminus/ring-ttl-session "0.3.2"]
                  [markdown-clj "1.0.2"]
@@ -21,39 +24,47 @@
                  [org.clojure/tools.cli "0.3.7"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.webjars.bower/tether "1.4.4"]
-                 [org.webjars/bootstrap "4.1.0"]
-                 [org.webjars/font-awesome "5.0.13"]
+                 [org.webjars/bootstrap "4.1.1"]
+                 [org.webjars/font-awesome "5.1.0"]
                  [org.webjars/jquery "3.3.1-1"]
                  [org.webjars/webjars-locator "0.34"]
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.2"]
-                 [selmer "1.11.7"]]
+                 [selmer "1.11.8"]]
+
+  :plugins [[lein-immutant "2.1.0"]]
 
   :source-paths ["src/clj"]
   :test-paths ["test/clj"]
   :resource-paths ["resources"]
   :target-path "target/%s/"
-  :main ^:skip-aot skein.core
+  :main ^:skip-aot org.atomicsauce.skein.core
 
   :profiles {:uberjar {:omit-source true
-                       :aot :all}
+                       :aot :all
+                       :uberjar-name "skein.jar"
+                       :source-paths ["env/prod/clj"]
+                       :resource-paths ["env/prod/resources"]}
 
              :prebuild {:dependencies []
                         :plugins [[lein-ancient "0.6.15"]
-                                 [lein-bikeshed "0.5.1"]
-                                 [lein-cljfmt "0.5.7"]
-                                 [jonase/eastwood "0.2.5"]
-                                 [lein-kibit "0.1.6"]
-                                 [lein-cloverage "1.0.10"]]
-                        :source-paths ["profiles/prebuild/clj"]
-                        :resource-paths ["profiles/prebuild/resources"]}
+                                  [lein-bikeshed "0.5.1"]
+                                  [lein-cljfmt "0.5.7"]
+                                  [jonase/eastwood "0.2.5"]
+                                  [lein-kibit "0.1.6"]
+                                  [lein-cloverage "1.0.10"]]}
 
-             :build {:dependencies [[prone "1.6.0"]
-                                    [ring/ring-devel "1.6.3"]
-                                    [ring/ring-mock "0.3.2"]]
-                     :plugins []
-                     :source-paths ["profiles/build/clj"]
-                     :resource-paths ["profiles/build/resources"]}}
+             :development {:dependencies [[expound "0.7.0"]
+                                          [pjstadig/humane-test-output "0.8.3"]
+                                          [prone "1.6.0"]
+                                          [ring/ring-devel "1.6.3"]
+                                          [ring/ring-mock "0.3.2"]]
+                           :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]]
+                           :source-paths ["env/dev/clj"]
+                           :resource-paths ["env/dev/resources"]
+                           :repl-options {:init-ns user}
+                           :injections [(require 'pjstadig.humane-test-output)
+                                        (pjstadig.humane-test-output/activate!)]}}
 
   :aliases {"unit" ["test"]})
