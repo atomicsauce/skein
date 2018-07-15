@@ -1,7 +1,7 @@
-(ns skein.env
+(ns org.atomicsauce.skein.env
   (:require [selmer.parser :as parser]
             [clojure.tools.logging :as log]
-            [skein.dev-middleware :refer [wrap-dev]]))
+            [org.atomicsauce.skein.dev-middleware :refer [wrap-dev]]))
 
 (def defaults
   {:init

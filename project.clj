@@ -38,7 +38,7 @@
   :source-paths ["src/clj"]
   :test-paths ["test/clj"]
   :resource-paths ["resources"]
-  :target-path "target/%s/"
+  :target-path "target/%s"
   :main ^:skip-aot org.atomicsauce.skein.core
 
   :profiles {:uberjar {:omit-source true
@@ -46,6 +46,7 @@
                        :uberjar-name "skein.jar"
                        :source-paths ["env/prod/clj"]
                        :resource-paths ["env/prod/resources"]}
+             ;;; uberjar source and resource paths broken, fix later
 
              :prebuild {:dependencies []
                         :plugins [[lein-ancient "0.6.15"]
@@ -61,8 +62,8 @@
                                           [ring/ring-devel "1.6.3"]
                                           [ring/ring-mock "0.3.2"]]
                            :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]]
-                           :source-paths ["env/dev/clj"]
-                           :resource-paths ["env/dev/resources"]
+                           :source-paths ["environments/development/clj"]
+                           :resource-paths ["environments/development/resources"]
                            :repl-options {:init-ns user}
                            :injections [(require 'pjstadig.humane-test-output)
                                         (pjstadig.humane-test-output/activate!)]}}
