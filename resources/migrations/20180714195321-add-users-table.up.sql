@@ -1,9 +1,7 @@
-CREATE TABLE users
-(id VARCHAR(20) PRIMARY KEY,
- first_name VARCHAR(30),
- last_name VARCHAR(30),
- email VARCHAR(30),
- admin BOOLEAN,
- last_login TIMESTAMP,
- is_active BOOLEAN,
- pass VARCHAR(300));
+CREATE TABLE nodes (
+    id          INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name        VARCHAR(256) UNIQUE,
+    content     CLOB,
+    ctime       TIMESTAMP,
+    mtime       TIMESTAMP
+);
