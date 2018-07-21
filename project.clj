@@ -7,7 +7,7 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[clj-time "0.14.4"]
-                 [com.h2database/h2 "1.4.196"]
+                 [com.h2database/h2 "1.4.197"]
                  [compojure "1.6.1"]
                  [conman "0.8.1"]
                  [cprop "0.1.11"]
@@ -48,23 +48,26 @@
                        :resource-paths ["env/prod/resources"]}
              ;;; uberjar source and resource paths broken, fix later
 
-             :prebuild {:dependencies []
+             :prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
+                        :dependencies []
                         :plugins [[lein-ancient "0.6.15"]
                                   [lein-bikeshed "0.5.1"]
                                   [lein-cljfmt "0.5.7"]
                                   [jonase/eastwood "0.2.5"]
                                   [lein-kibit "0.1.6"]
-                                  [lein-cloverage "1.0.10"]]}
+                                  [lein-cloverage "1.0.10"]]
+                        :source-paths ["profiles/prebuild/clj"]
+                        :resource-paths ["profiles/prebuild/resources"]}
 
              :development {:jvm-opts ["-Dconf=config-development.edn"]
-                           :dependencies [[expound "0.7.0"]
+                           :dependencies [[expound "0.7.1"]
                                           [pjstadig/humane-test-output "0.8.3"]
                                           [prone "1.6.0"]
                                           [ring/ring-devel "1.6.3"]
                                           [ring/ring-mock "0.3.2"]]
                            :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]]
-                           :source-paths ["environments/development/clj"]
-                           :resource-paths ["environments/development/resources"]
+                           :source-paths ["profiles/development/clj"]
+                           :resource-paths ["profiles/development/resources"]
                            :repl-options {:init-ns user}
                            :injections [(require 'pjstadig.humane-test-output)
                                         (pjstadig.humane-test-output/activate!)]}}

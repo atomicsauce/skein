@@ -10,8 +10,8 @@
   :once
   (fn [f]
     (mount/start
-      #'org.atomicsauce.skein.config/env
-      #'org.atomicsauce.skein.db.core/*db*)
+     #'org.atomicsauce.skein.config/env
+     #'org.atomicsauce.skein.db.core/*db*)
     (migrations/migrate ["migrate"] (select-keys env [:database-url]))
     (f)))
 
@@ -19,12 +19,12 @@
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
     (is (= 1 (db/create-user!
-               t-conn
-               {:id         "1"
-                :first_name "Sam"
-                :last_name  "Smith"
-                :email      "sam.smith@example.com"
-                :pass       "pass"})))
+              t-conn
+              {:id         "1"
+               :first_name "Sam"
+               :last_name  "Smith"
+               :email      "sam.smith@example.com"
+               :pass       "pass"})))
     (is (= {:id         "1"
             :first_name "Sam"
             :last_name  "Smith"
