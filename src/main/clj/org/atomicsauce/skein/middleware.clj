@@ -37,7 +37,7 @@
 (def joda-time-writer
   (transit/write-handler
    (constantly "m")
-   (fn [v] (-> ^ReadableInstant v .getMillis))
+   (fn [v] (-> ^ReadableInstant v .getMillis .toLong))
    (fn [v] (-> ^ReadableInstant v .getMillis .toString))))
 
 (cheshire/add-encoder

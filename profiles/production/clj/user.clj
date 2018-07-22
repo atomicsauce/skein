@@ -24,7 +24,8 @@
   (mount/stop #'org.atomicsauce.skein.db.core/*db*)
   (mount/start #'org.atomicsauce.skein.db.core/*db*)
   (binding [*ns* 'org.atomicsauce.skein.db.core]
-    (conman/bind-connection org.atomicsauce.skein.db.core/*db* "sql/queries.sql")))
+    (conman/bind-connection org.atomicsauce.skein.db.core/*db*
+                            "sql/queries.sql")))
 
 (defn reset-db []
   (migrations/migrate ["reset"] (select-keys env [:database-url])))

@@ -72,7 +72,7 @@
                           :repl-options {}
                           :injections []
                           :source-paths ["profiles/production/clj"]
-                          :resource-paths ["profiles/production/resources"]}
+                          :resource-paths ["profiles/production/resources"]}}
 
              ;;; below here will need revision once we're deploying to actual environments
              ;;; :uberjar {:omit-source true
@@ -81,4 +81,4 @@
              ;;;           :source-paths ["profiles/production/clj"]
              ;;;           :resource-paths ["profiles/production/resources"]}}
 
-)
+  )

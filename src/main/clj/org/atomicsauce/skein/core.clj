@@ -53,7 +53,7 @@
     (do
       (log/error (str "Database configuration not found,"
                       ":database-url environment variable "
-		      "must be set before running"))
+                      "must be set before running"))
       (System/exit 1))
     (some #{"init"} args)
     (do
