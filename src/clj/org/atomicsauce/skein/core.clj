@@ -18,7 +18,8 @@
   (http/start
    (-> env
        (assoc  :handler #'handler/app)
-       (update :io-threads #(or % (* 2 (.availableProcessors (Runtime/getRuntime)))))
+       (update :io-threads #(or % (* 2 (.availableProcessors
+                                        (Runtime/getRuntime)))))
        (update :port #(or (-> env :options :port) %))))
   :stop
   (http/stop http-server))
@@ -50,7 +51,9 @@
   (cond
     (nil? (:database-url env))
     (do
-      (log/error "Database configuration not found, :database-url environment variable must be set before running")
+      (log/error (str "Database configuration not found,"
+                      ":database-url environment variable "
+		      "must be set before running"))
       (System/exit 1))
     (some #{"init"} args)
     (do
