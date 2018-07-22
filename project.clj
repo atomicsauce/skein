@@ -44,7 +44,7 @@
   :aliases {"unit" ["test"]}
   
   :profiles {:prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
-                        :dependencies []
+                        :dependencies [[ring/ring-mock "0.3.2"]]
                         :plugins [[lein-ancient "0.6.15"]
                                   [lein-bikeshed "0.5.1"]
                                   [lein-cljfmt "0.5.7"]
