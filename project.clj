@@ -37,9 +37,12 @@
 
   :source-paths ["src/main/clj"]
   :resource-paths ["src/main/resources"]
+  :test-paths ["src/test/clj"]
   :target-path "target/%s"
   :main ^:skip-aot org.atomicsauce.skein.core
 
+  :aliases {"unit" ["test"]}
+  
   :profiles {:prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
                         :dependencies []
                         :plugins [[lein-ancient "0.6.15"]
