@@ -35,20 +35,12 @@
 
   :plugins [[lein-immutant "2.1.0"]]
 
-  :source-paths ["src/clj"]
-  :test-paths ["test/clj"]
-  :resource-paths ["resources"]
+  :source-paths ["src/main/clj"]
+  :resource-paths ["src/main/resources"]
   :target-path "target/%s"
   :main ^:skip-aot org.atomicsauce.skein.core
 
-  :profiles {:uberjar {:omit-source true
-                       :aot :all
-                       :uberjar-name "skein.jar"
-                       :source-paths ["env/prod/clj"]
-                       :resource-paths ["env/prod/resources"]}
-             ;;; uberjar source and resource paths broken, fix later
-
-             :prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
+  :profiles {:prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
                         :dependencies []
                         :plugins [[lein-ancient "0.6.15"]
                                   [lein-bikeshed "0.5.1"]
@@ -56,6 +48,8 @@
                                   [jonase/eastwood "0.2.5"]
                                   [lein-kibit "0.1.6"]
                                   [lein-cloverage "1.0.10"]]
+                        :repl-options {}
+                        :injections []
                         :source-paths ["profiles/prebuild/clj"]
                         :resource-paths ["profiles/prebuild/resources"]}
 
@@ -66,10 +60,25 @@
                                           [ring/ring-devel "1.6.3"]
                                           [ring/ring-mock "0.3.2"]]
                            :plugins [[com.jakemccrary/lein-test-refresh "0.19.0"]]
-                           :source-paths ["profiles/development/clj"]
-                           :resource-paths ["profiles/development/resources"]
                            :repl-options {:init-ns user}
                            :injections [(require 'pjstadig.humane-test-output)
-                                        (pjstadig.humane-test-output/activate!)]}}
+                                        (pjstadig.humane-test-output/activate!)]
+                           :source-paths ["profiles/development/clj"]
+                           :resource-paths ["profiles/development/resources"]}
 
-  :aliases {"unit" ["test"]})
+             :production {:jvm-opts ["-Dconf=config-production.edn"]
+                          :dependencies []
+                          :plugins []
+                          :repl-options {}
+                          :injections []
+                          :source-paths ["profiles/production/clj"]
+                          :resource-paths ["profiles/production/resources"]}
+
+             ;;; below here will need revision once we're deploying to actual environments
+             ;;; :uberjar {:omit-source true
+             ;;;           :aot :all
+             ;;;           :uberjar-name "skein-%s.jar"
+             ;;;           :source-paths ["profiles/production/clj"]
+             ;;;           :resource-paths ["profiles/production/resources"]}}
+
+)
