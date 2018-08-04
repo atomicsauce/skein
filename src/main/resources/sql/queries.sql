@@ -1,21 +1,29 @@
--- :name create-user! :! :n
--- :doc creates a new user record
-INSERT INTO users
-(id, first_name, last_name, email, pass)
-VALUES (:id, :first_name, :last_name, :email, :pass)
+-- :name create-node! :! :n
+-- :doc creates a new node
+INSERT INTO Nodes
+    ( n_name, content, ctime, mtime )
+VALUES
+    ( :n_name, :content, :ctime, :mtime )
+;
 
--- :name update-user! :! :n
--- :doc updates an existing user record
-UPDATE users
-SET first_name = :first_name, last_name = :last_name, email = :email
-WHERE id = :id
+-- :name retrieve-node! :! :n
+-- :doc retrieves an existing node
+SELECT * FROM Nodes WHERE id = :id
+;
 
--- :name get-user :? :1
--- :doc retrieves a user record given the id
-SELECT * FROM users
-WHERE id = :id
+-- :name update-node! :! :n
+-- :doc updates an existing node
+UPDATE Nodes
+SET
+    n_name = :n_name,
+    content = :content,
+    ctime = :ctime,
+    mtime = :mtime
+WHERE
+    id = :id
+;
 
--- :name delete-user! :! :n
--- :doc deletes a user record given the id
-DELETE FROM users
-WHERE id = :id
+-- :name delete-node! :! :n
+-- :doc deletes an existing node
+DELETE FROM Nodes WHERE id = :id
+;

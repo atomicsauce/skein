@@ -1,6 +1,6 @@
-CREATE TABLE nodes (
+CREATE TABLE Nodes (
     id          INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name        VARCHAR(256) UNIQUE,
+    n_name      VARCHAR(256) UNIQUE,
     content     CLOB,
     ctime       TIMESTAMP,
     mtime       TIMESTAMP
