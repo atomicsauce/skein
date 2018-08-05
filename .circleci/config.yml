@@ -22,6 +22,22 @@ jobs:
           command: bash <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json
           when: always
 
+  # build stage
+  build:
+    docker:
+      - image: circleci/clojure:lein-2.8.1
+    steps:
+      - checkout
+
+      # heroku deployment
+      - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+      # smoke test
+      # TBD
+
+      # functional testing
+      # TBD
+
 workflows:
   version: 2
 
@@ -29,3 +45,5 @@ workflows:
   pipeline:
     jobs:
       - prebuild
+      - build
+
