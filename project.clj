@@ -71,18 +71,8 @@
                            :resource-paths ["profiles/development/resources"]}
 
              :production {:jvm-opts ["-Dconf=config-production.edn"]
-                          :dependencies []
-                          :plugins []
-                          :repl-options {}
-                          :injections []
+                          :omit-source true
+                          :aot :all
+                          :uberjar-name "skein-%s.jar"
                           :source-paths ["profiles/production/clj"]
-                          :resource-paths ["profiles/production/resources"]}}
-
-             ;;; below here will need revision once we're deploying to actual environments
-             ;;; :uberjar {:omit-source true
-             ;;;           :aot :all
-             ;;;           :uberjar-name "skein-%s.jar"
-             ;;;           :source-paths ["profiles/production/clj"]
-             ;;;           :resource-paths ["profiles/production/resources"]}}
-
-  )
+                          :resource-paths ["profiles/production/resources"]}})
