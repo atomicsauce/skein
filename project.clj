@@ -19,19 +19,19 @@
                  [markdown-clj "1.0.2"]
                  [metosin/muuntaja "0.5.0"]
                  [metosin/ring-http-response "0.9.0"]
-                 [mount "0.1.12"]
+                 [mount "0.1.13"]
                  [org.clojure/clojure "1.9.0"]
                  [org.clojure/tools.cli "0.3.7"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.webjars.bower/tether "1.4.4"]
-                 [org.webjars/bootstrap "4.1.2"]
+                 [org.webjars/bootstrap "4.1.3"]
                  [org.webjars/font-awesome "5.2.0"]
                  [org.webjars/jquery "3.3.1-1"]
                  [org.webjars/webjars-locator "0.34"]
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.2"]
-                 [selmer "1.11.8"]]
+                 [selmer "1.11.9"]]
 
   :plugins [[lein-immutant "2.1.0"]]
 
@@ -44,7 +44,8 @@
   :aliases {"unit" ["test"]}
   
   :profiles {:prebuild {:jvm-opts ["-Dconf=config-prebuild.edn"]
-                        :dependencies [[ring/ring-mock "0.3.2"]]
+                        :dependencies [[midje "1.9.2"]
+                                       [ring/ring-mock "0.3.2"]]
                         :plugins [[lein-ancient "0.6.15"]
                                   [lein-bikeshed "0.5.1"]
                                   [lein-cljfmt "0.5.7"]

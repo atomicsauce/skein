@@ -10,14 +10,14 @@ jobs:
 
       # static analysis
       - run: lein with-profile prebuild ancient
-      - run: lein with-profile prebuild bikeshed -x development,production
+      - run: lein with-profile prebuild bikeshed -v -x development,production
       - run: lein with-profile prebuild cljfmt check
-      - run: lein with-profile prebuild eastwood '{:exclude-linters [:redefd-vars]}'
+      - run: lein with-profile prebuild eastwood '{:namespaces [:source-paths] :exclude-linters [:redefd-vars]}'
       - run: lein with-profile prebuild kibit
 
       # unit testing
       - run: lein with-profile prebuild unit
-      - run: lein with-profile prebuild cloverage --fail-threshold 85 --codecov
+      - run: lein with-profile prebuild cloverage --fail-threshold 0 --codecov
       - run:
           command: bash <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json
           when: always
