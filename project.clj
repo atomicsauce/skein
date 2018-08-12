@@ -38,6 +38,7 @@
   :source-paths ["src/main/clj"]
   :resource-paths ["src/main/resources"]
   :test-paths ["src/test/clj"]
+  :test-resource-paths ["src/test/resources"]
   :target-path "target/%s"
   :main ^:skip-aot org.atomicsauce.skein.core
 
@@ -73,6 +74,6 @@
              :production {:jvm-opts ["-Dconf=config-production.edn"]
                           :omit-source true
                           :aot :all
-                          :uberjar-name "skein-%s.jar"
+                          :uberjar-name "skein.jar"
                           :source-paths ["profiles/production/clj"]
                           :resource-paths ["profiles/production/resources"]}})
